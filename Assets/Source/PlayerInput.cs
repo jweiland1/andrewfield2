@@ -5,28 +5,40 @@ using InControl;
 
 public class PlayerInput : MonoBehaviour
 {
-    RobotMovement robotMovement;
+    MovementActions movement;
+    LauncherActions ringLauncherAction;
     MovementController movementController;
+
+    RingLauncher ringLauncherController;
 
     private void Start()
     {
         movementController = GetComponent<MovementController>();
-        robotMovement = new RobotMovement();
+        movement = new MovementActions();
 
-        robotMovement.Forward.AddDefaultBinding(InputControlType.LeftStickY);
-        robotMovement.Strafe.AddDefaultBinding(InputControlType.LeftStickX);
-        robotMovement.RotatePosX.AddDefaultBinding(InputControlType.RightStickX);
-        robotMovement.RotatePosY.AddDefaultBinding(InputControlType.RightStickY);
+        movement.Forward.AddDefaultBinding(InputControlType.LeftStickY);
+        movement.Strafe.AddDefaultBinding(InputControlType.LeftStickX);
+        movement.RotatePosX.AddDefaultBinding(InputControlType.RightStickX);
+        movement.RotatePosY.AddDefaultBinding(InputControlType.RightStickY);
+
+        ringLauncherController = GetComponent<RingLauncher>();
+        ringLauncherAction = new LauncherActions();
+        ringLauncherAction.ActivateRingIntake.AddDefaultBinding(InputControlType.Action1);
     }
 
     private void Update()
     {
-        if(robotMovement.Forward.IsPressed)
+        if(movement.Forward.IsPressed)
         {
-            movementController.AccelerateBy(percent: robotMovement.Forward.Value);
+            movementController.AccelerateBy(percent: movement.Forward.Value);
         }
 
-        movementController.Rotate(robotMovement.RotatePosX.Value, robotMovement.RotatePosY.Value);
+        if (ringLauncherAction.ActivateRingIntake.IsPressed)
+        {
+            ringLauncherController.ActivateRingIntake();
+        }
+
+        movementController.Rotate(movement.RotatePosX.Value, movement.RotatePosY.Value);
     }
 }
 

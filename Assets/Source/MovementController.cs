@@ -19,7 +19,7 @@ public class MovementController : MonoBehaviour
     ///<summary>Accelerate by a percent of TopSpeed</summary>
     public void AccelerateBy(float percent)
     {
-        Debug.Log("MoveForward :" + percent);
+        //Debug.Log("MoveForward :" + percent);
         float acceleration = (topSpeed * conversionRate) * percent;
         transform.position += acceleration * pivotPoint.forward *-1 * Time.deltaTime;
     }
