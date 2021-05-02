@@ -4,15 +4,18 @@ using UnityEngine;
 using InControl;
 
 public class RingLauncher : MonoBehaviour
-{    
-    private float flywheelPower = 0f;    
+{
+    [SerializeField] private float flywheelPower = 5f;    
     [SerializeField] private int inventory = 0;
     RingCollectorController ringCollecter;
+    [SerializeField] GameObject launcherDirection;
 
     [SerializeField] private GameObject[] attachmentPoints;
+    private Queue<GameObject> ringQueue;
 
     private void Start()
-    {   
+    {
+        ringQueue = new Queue<GameObject>();
         ringCollecter = GetComponentInChildren<RingCollectorController>();
         Reset();
     }
@@ -20,6 +23,7 @@ public class RingLauncher : MonoBehaviour
     private void Reset()
     {
         inventory = 0;
+        ringQueue.Clear();
     }
 
     private void SetFlyWheelPowerTo(float value)
@@ -27,11 +31,20 @@ public class RingLauncher : MonoBehaviour
         flywheelPower = value;
     }
 
-    private void LaunchRing()
+    public void LaunchRing()
     {
         // check ring count
-        // if > 0
+        if(inventory > 0)
+        {
             // launch ring using current Flywheel Power as force
+            var nextRing = ringQueue.Dequeue();
+            nextRing.transform.parent = null;
+            //launch in direction the launcher is facing
+            nextRing.GetComponent<Rigidbody>().isKinematic = false;
+            nextRing.GetComponent<Rigidbody>().AddForce(launcherDirection.transform.forward * flywheelPower);
+            inventory--;
+        }
+        
     }
 
     private void SpinFlyWheel()
@@ -61,6 +74,7 @@ public class RingLauncher : MonoBehaviour
         newRing.transform.SetParent(attachmentPoints[inventory].transform, false);
         newRing.transform.localPosition = Vector3.zero;
         inventory++;
+        ringQueue.Enqueue(newRing);
         //add to attachment point
     }
 }

@@ -24,6 +24,7 @@ public class PlayerInput : MonoBehaviour
         ringLauncherController = GetComponent<RingLauncher>();
         ringLauncherAction = new LauncherActions();
         ringLauncherAction.ActivateRingIntake.AddDefaultBinding(InputControlType.Action1);
+        ringLauncherAction.LaunchRing.AddDefaultBinding(InputControlType.LeftTrigger);
     }
 
     private void Update()
@@ -37,6 +38,12 @@ public class PlayerInput : MonoBehaviour
         {
             ringLauncherController.ActivateRingIntake();
         }
+
+        if (ringLauncherAction.LaunchRing.WasPressed)
+        {
+            ringLauncherController.LaunchRing();
+        }
+
 
         movementController.Rotate(movement.RotatePosX.Value, movement.RotatePosY.Value);
     }
