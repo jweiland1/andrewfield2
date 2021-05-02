@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour
     {
         if(robotMovement.Forward.IsPressed)
         {
-            movementController.MoveForward(robotMovement.Forward.Value);
+            movementController.AccelerateBy(percent: robotMovement.Forward.Value);
         }
 
         movementController.Rotate(robotMovement.RotatePosX.Value, robotMovement.RotatePosY.Value);
