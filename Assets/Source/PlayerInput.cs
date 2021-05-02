@@ -8,7 +8,6 @@ public class PlayerInput : MonoBehaviour
     MovementActions movement;
     LauncherActions ringLauncherAction;
     MovementController movementController;
-
     RingLauncher ringLauncherController;
 
     private void Start()
@@ -43,7 +42,6 @@ public class PlayerInput : MonoBehaviour
         {
             ringLauncherController.LaunchRing();
         }
-
 
         movementController.Rotate(movement.RotatePosX.Value, movement.RotatePosY.Value);
     }

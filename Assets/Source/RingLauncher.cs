@@ -43,8 +43,7 @@ public class RingLauncher : MonoBehaviour
             nextRing.GetComponent<Rigidbody>().isKinematic = false;
             nextRing.GetComponent<Rigidbody>().AddForce(launcherDirection.transform.forward * flywheelPower);
             inventory--;
-        }
-        
+        }        
     }
 
     private void SpinFlyWheel()
@@ -71,10 +70,12 @@ public class RingLauncher : MonoBehaviour
     {
         Debug.Log("ring collected");
         newRing.GetComponent<Rigidbody>().isKinematic = true;
+
+        //add to attachment point
         newRing.transform.SetParent(attachmentPoints[inventory].transform, false);
         newRing.transform.localPosition = Vector3.zero;
         inventory++;
         ringQueue.Enqueue(newRing);
-        //add to attachment point
+        
     }
 }
