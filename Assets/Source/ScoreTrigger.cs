@@ -19,7 +19,7 @@ public class ScoreTrigger : MonoBehaviour
     {
         if(other.CompareTag("Ring"))
         {
-            OnScoreTriggered(scoreValue, team);
+            OnScoreTriggered?.Invoke(scoreValue, team);
         }
     }
 }
