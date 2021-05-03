@@ -10,6 +10,9 @@ public class PlayerInput : MonoBehaviour
     MovementController movementController;
     RingLauncher ringLauncherController;
 
+    WobblerArmActions wobblerAction;
+    WobblerAttachmentController wobblerController;
+
     private void Start()
     {
         movementController = GetComponent<MovementController>();
@@ -24,6 +27,12 @@ public class PlayerInput : MonoBehaviour
         ringLauncherAction = new LauncherActions();
         ringLauncherAction.ActivateRingIntake.AddDefaultBinding(InputControlType.Action1);
         ringLauncherAction.LaunchRing.AddDefaultBinding(InputControlType.LeftTrigger);
+
+        wobblerAction = new WobblerArmActions();
+        wobblerController = GetComponentInChildren<WobblerAttachmentController>();
+        wobblerAction.LiftArm.AddDefaultBinding(InputControlType.RightBumper);
+        wobblerAction.LowerArm.AddDefaultBinding(InputControlType.LeftBumper);
+
     }
 
     private void Update()
@@ -41,6 +50,16 @@ public class PlayerInput : MonoBehaviour
         if (ringLauncherAction.LaunchRing.WasPressed)
         {
             ringLauncherController.LaunchRing();
+        }
+
+        if(wobblerAction.LiftArm.WasPressed)
+        {
+            wobblerController.GrabWobbler();
+        }
+
+        if (wobblerAction.LowerArm.WasPressed)
+        {
+            wobblerController.DropWobbler();
         }
 
         movementController.Rotate(movement.RotatePosX.Value, movement.RotatePosY.Value);

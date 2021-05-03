@@ -124,6 +124,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &25666215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1502067149736495767, guid: 70832ad8204cb3949afdf90412f3a83a,
+    type: 3}
+  m_PrefabInstance: {fileID: 356638000915086902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &25666218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25666215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7408824c58a77a34381cc35643a733e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolCount: 0
+  tag: Wobblers
 --- !u!224 &28176179 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5156798649238330650, guid: 8a444e6a19c2abf419cca4eba610c222,
@@ -292,6 +312,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 588e70dc94bfaca41b883eb31ac54e5d, type: 3}
+--- !u!1 &343909560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2228036654449719750, guid: 70832ad8204cb3949afdf90412f3a83a,
+    type: 3}
+  m_PrefabInstance: {fileID: 356638000915086902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &343909562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343909560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7077954a2b96a47a02f7e04183d555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxInventory: 0
+  inventory: 0
+  attachmentPoint: {fileID: 0}
 --- !u!1001 &372637593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3186,10 +3227,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1902786095, guid: 70832ad8204cb3949afdf90412f3a83a, type: 3}
+      propertyPath: tag
+      value: Ring
+      objectReference: {fileID: 0}
     - target: {fileID: 356638000915086906, guid: 70832ad8204cb3949afdf90412f3a83a,
         type: 3}
       propertyPath: topSpeed
-      value: 22.86
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3406382061985697715, guid: 70832ad8204cb3949afdf90412f3a83a,
         type: 3}

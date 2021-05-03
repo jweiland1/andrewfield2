@@ -6,7 +6,8 @@ public class RingCollectorController : MonoBehaviour
 {
     RingLauncher ringLauncher;
     List<GameObject> ringPool;
-    public int poolCount = 0;    
+    public int poolCount = 0;
+    [SerializeField] private string tag = "";
 
     private void Start()
     {
@@ -16,7 +17,7 @@ public class RingCollectorController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent.CompareTag("Ring"))
+        if (other.transform.parent.CompareTag(tag))
         {
             ringPool.Add(other.transform.parent.gameObject);
             poolCount++;
@@ -25,7 +26,7 @@ public class RingCollectorController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.parent.CompareTag("Ring"))
+        if (other.transform.parent.CompareTag(tag))
         {
             ringPool.Remove(other.transform.parent.gameObject);
             poolCount--;
