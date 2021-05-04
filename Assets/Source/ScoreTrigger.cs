@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScoreTrigger : MonoBehaviour
 {
+    public bool isActivated = true;
     public int scoreValue = 1;
     public Team team;
 

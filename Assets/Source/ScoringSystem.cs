@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum Team  { red, blue }
+public enum Team  { red, blue, none }
 
 public class ScoringSystem : MonoBehaviour
 {

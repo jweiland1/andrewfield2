@@ -10,9 +10,15 @@ public class DropZoneTrigger : ScoreTrigger
         {
             if(other.gameObject.GetComponentInParent<ScoringObjectDataContainer>())
             {
+                if(team == Team.none)
+                {                    
+                    Debug.Log(string.Format("<color=red>Score triggered by {0}</color>", objectTag));
+                    TriggerScoreEvent(scoreValue, other.GetComponentInParent<ScoringObjectDataContainer>().team);
+                }
+
                 if(other.gameObject.GetComponentInParent<ScoringObjectDataContainer>().team == this.team)
                 {
-                    Debug.Log("Score triggered by " + objectTag);
+                    Debug.Log(string.Format("<color=red>Score triggered by {0}</color>", objectTag));
                     TriggerScoreEvent(scoreValue, team);
                 }
             }
