@@ -7,6 +7,7 @@ public class MovementActions : PlayerActionSet
 {
     public PlayerAction Forward;
     public PlayerAction Strafe;
+    public PlayerOneAxisAction Move;
     public PlayerAction RotatePosX, RotatePosY;
     public PlayerOneAxisAction Rotate;
 
@@ -14,6 +15,7 @@ public class MovementActions : PlayerActionSet
     {
         Forward = CreatePlayerAction("Move Forward");
         Strafe = CreatePlayerAction("Strafe");
+        Move = CreateOneAxisPlayerAction(Forward, Strafe);
         RotatePosX = CreatePlayerAction("Rotate Left");
         RotatePosY = CreatePlayerAction("Rotate Right");
         Rotate = CreateOneAxisPlayerAction(RotatePosX, RotatePosY);

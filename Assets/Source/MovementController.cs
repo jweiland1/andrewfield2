@@ -33,11 +33,20 @@ public class MovementController : MonoBehaviour
         //Debug.Log("x : " + x + " | y : " + y);
 
         Vector3 newRot = new Vector3(x, 0, y);
-
         var currentPos = rb.position;
-
         var facePos = currentPos + newRot;
-
         pivotPoint.LookAt(facePos);
+    }
+
+    //public float x, y;
+    public void Movement(float x, float y)
+    {
+        //Debug.Log("x : " + x + " | y : " + y);
+        Vector3 newRot = new Vector3(-y, 0, -x);
+
+        Debug.Log("facePOS : " + newRot.ToString());
+        Debug.DrawRay(rb.position, newRot * 10, Color.green);
+
+        rb.AddForce(newRot * topSpeed);
     }
 }

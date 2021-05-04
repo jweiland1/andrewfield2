@@ -19,10 +19,13 @@ public class ScoreTrigger : MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(objectTag))
+        if(isActivated)
         {
-            Debug.Log("Score triggered by " + objectTag);
-            TriggerScoreEvent(scoreValue, team);
+            if(other.CompareTag(objectTag))
+            {
+                Debug.Log("Score triggered by " + objectTag);
+                TriggerScoreEvent(scoreValue, team);
+            }
         }
     }
 

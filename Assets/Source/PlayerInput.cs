@@ -32,16 +32,10 @@ public class PlayerInput : MonoBehaviour
         wobblerController = GetComponentInChildren<WobblerAttachmentController>();
         wobblerAction.LiftArm.AddDefaultBinding(InputControlType.RightBumper);
         wobblerAction.LowerArm.AddDefaultBinding(InputControlType.LeftBumper);
-
     }
 
     private void Update()
     {
-        if(movement.Forward.IsPressed)
-        {
-            movementController.AccelerateBy(percent: movement.Forward.Value);
-        }
-
         if (ringLauncherAction.ActivateRingIntake.IsPressed)
         {
             ringLauncherController.ActivateRingIntake();
@@ -62,6 +56,7 @@ public class PlayerInput : MonoBehaviour
             wobblerController.DropWobbler();
         }
 
+        movementController.Movement(movement.Forward.Value, movement.Strafe.Value);
         movementController.Rotate(movement.RotatePosX.Value, movement.RotatePosY.Value);
     }
 }
