@@ -9,17 +9,24 @@ public class ScoreTrigger : MonoBehaviour
 
     public delegate void ScoreEvent(int value, Team team);
     public event ScoreEvent OnScoreTriggered;
+    [SerializeField] protected string objectTag;
 
     private void Start()
     {
         FindObjectOfType<ScoringSystem>().AddMeToScoreSystem(this);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Ring"))
+        if(other.CompareTag(objectTag))
         {
-            OnScoreTriggered?.Invoke(scoreValue, team);
+            Debug.Log("Score triggered by " + objectTag);
+            TriggerScoreEvent(scoreValue, team);
         }
+    }
+
+    protected void TriggerScoreEvent(int value, Team team)
+    {
+        OnScoreTriggered?.Invoke(scoreValue, team);
     }
 }

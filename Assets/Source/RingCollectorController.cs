@@ -17,19 +17,25 @@ public class RingCollectorController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent.CompareTag(tag))
+        if (other.transform.parent)
         {
-            ringPool.Add(other.transform.parent.gameObject);
-            poolCount++;
+            if (other.transform.parent.CompareTag(tag))
+            {
+                ringPool.Add(other.transform.parent.gameObject);
+                poolCount++;
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.parent.CompareTag(tag))
+        if (other.transform.parent)
         {
-            ringPool.Remove(other.transform.parent.gameObject);
-            poolCount--;
+            if(other.transform.parent.CompareTag(tag))
+            {
+                ringPool.Remove(other.transform.parent.gameObject);
+                poolCount--;
+            }
         }
     }
 

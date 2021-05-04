@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolCount: 0
+  tag: 
 --- !u!1 &1502067149736495767
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flywheelPower: 500
   inventory: 0
+  ringCollecter: {fileID: 0}
   launcherDirection: {fileID: 5868743382750803307}
   attachmentPoints:
   - {fileID: 2258896148660462390}

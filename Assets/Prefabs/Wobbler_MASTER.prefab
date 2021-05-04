@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7779557658348836939}
   m_Layer: 6
   m_Name: Pole
-  m_TagString: Untagged
+  m_TagString: Wobblers
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ee8d3655f82b3044ab2d006e468793af, type: 2}
+  - {fileID: 2100000, guid: 34a3905bba196ef4084f83416c0fe0b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,10 +108,9 @@ GameObject:
   - component: {fileID: 810890721692232680}
   - component: {fileID: 232765720351072794}
   - component: {fileID: 8125082223575960992}
-  - component: {fileID: 836905335}
   m_Layer: 6
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Wobblers
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,22 +192,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.4
   m_Center: {x: 0, y: 0.08, z: 0}
---- !u!54 &836905335
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2418502575981203303}
-  serializedVersion: 2
-  m_Mass: 2
-  m_Drag: 2
-  m_AngularDrag: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 32
-  m_CollisionDetection: 2
 --- !u!1 &4225251797727149688
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,8 +202,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5790244941475403121}
   - component: {fileID: 1815729075}
+  - component: {fileID: 7609111355790451527}
+  - component: {fileID: 7899495674804502766}
   m_Layer: 6
-  m_Name: 'Wobbler '
+  m_Name: Wobbler_MASTER
   m_TagString: Wobblers
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,4 +239,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfMass: {x: 0, y: -0.5, z: 0}
-  rb: {fileID: 836905335}
+  rb: {fileID: 7899495674804502766}
+--- !u!114 &7609111355790451527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4225251797727149688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee12ed2a13d7c5340af292c48ef517ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 1
+  data: {fileID: 11400000, guid: 16b894df42a79a44db2f30075454b25c, type: 2}
+--- !u!54 &7899495674804502766
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4225251797727149688}
+  serializedVersion: 2
+  m_Mass: 2
+  m_Drag: 2
+  m_AngularDrag: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 32
+  m_CollisionDetection: 2

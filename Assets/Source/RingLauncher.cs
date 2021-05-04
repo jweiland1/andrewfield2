@@ -7,8 +7,8 @@ public class RingLauncher : MonoBehaviour
 {
     [SerializeField] private float flywheelPower = 5f;    
     [SerializeField] private int inventory = 0;
-    RingCollectorController ringCollecter;
-    [SerializeField] GameObject launcherDirection;
+    [SerializeField] private RingCollectorController ringCollecter;
+    [SerializeField] GameObject launcherDirection;    
 
     [SerializeField] private GameObject[] attachmentPoints;
     private Queue<GameObject> ringQueue;
@@ -16,7 +16,7 @@ public class RingLauncher : MonoBehaviour
     private void Start()
     {
         ringQueue = new Queue<GameObject>();
-        ringCollecter = GetComponentInChildren<RingCollectorController>();
+        //ringCollecter = GetComponentInChildren<RingCollectorController>();
         Reset();
     }
 
@@ -40,8 +40,10 @@ public class RingLauncher : MonoBehaviour
             var nextRing = ringQueue.Dequeue();
             nextRing.transform.parent = null;
             //launch in direction the launcher is facing
-            nextRing.GetComponent<Rigidbody>().isKinematic = false;
-            nextRing.GetComponent<Rigidbody>().AddForce(launcherDirection.transform.forward * flywheelPower);
+            var rb = nextRing.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.mass = rb.GetComponent<ScoringObjectDataContainer>().data.Mass;
+            rb.AddForce(launcherDirection.transform.forward * flywheelPower);
             inventory--;
         }        
     }
@@ -69,7 +71,9 @@ public class RingLauncher : MonoBehaviour
     private void AddRingToInventory(GameObject newRing)
     {
         Debug.Log("ring collected");
-        newRing.GetComponent<Rigidbody>().isKinematic = true;
+        var rb = newRing.GetComponent<Rigidbody>();
+        rb.isKinematic = true;        
+        rb.mass = 0;
 
         //add to attachment point
         newRing.transform.SetParent(attachmentPoints[inventory].transform, false);

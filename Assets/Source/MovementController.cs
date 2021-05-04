@@ -19,9 +19,13 @@ public class MovementController : MonoBehaviour
     ///<summary>Accelerate by a percent of TopSpeed</summary>
     public void AccelerateBy(float percent)
     {
-        ////Debug.Log("MoveForward :" + percent);
-        float acceleration = (topSpeed) * percent;
-        rb.AddForce(-pivotPoint.forward * acceleration, ForceMode.Force);
+        //Debug.Log("MoveForward :" + percent);
+        float acceleration = (topSpeed) * Mathf.Abs(percent);
+        
+        if(percent > 0)
+            rb.AddForce(-pivotPoint.forward * acceleration, ForceMode.Force);
+        else
+            rb.AddForce(pivotPoint.forward * acceleration, ForceMode.Force);
     }
 
     public void Rotate(float x, float y)

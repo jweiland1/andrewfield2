@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreValue: 1
   team: 0
+  objectTag: Ring
 --- !u!136 &533920910920048212
 CapsuleCollider:
   m_ObjectHideFlags: 0

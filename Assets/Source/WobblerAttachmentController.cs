@@ -6,13 +6,15 @@ public class WobblerAttachmentController : MonoBehaviour
 {
     public int maxInventory = 0;
     [SerializeField] private int inventory = 0;
-    RingCollectorController ringCollecter;
+    [SerializeField] private RingCollectorController ringCollecter;
     [SerializeField] private GameObject attachmentPoint;
     private Queue<GameObject> ringQueue;
+    private float inventoryMass = 0f;
 
     private void Start()
     {
         attachmentPoint = this.gameObject;
+        ringQueue = new Queue<GameObject>();
     }
 
     private void Reset()
@@ -42,7 +44,9 @@ public class WobblerAttachmentController : MonoBehaviour
             var nextRing = ringQueue.Dequeue();
             nextRing.transform.parent = null;
             //launch in direction the launcher is facing
-            nextRing.GetComponentInChildren<Rigidbody>().isKinematic = false;            
+            var rb = nextRing.GetComponentInChildren<Rigidbody>();
+            rb.isKinematic = false;
+            rb.mass = inventoryMass;            
             inventory--;
         }
     }
@@ -50,7 +54,10 @@ public class WobblerAttachmentController : MonoBehaviour
     private void AddObjectToInventory(GameObject newRing)
     {
         Debug.Log("wobbler collected");
-        newRing.GetComponentInChildren<Rigidbody>().isKinematic = true;
+        var rb = newRing.GetComponentInChildren<Rigidbody>();
+        rb.isKinematic = true;
+        inventoryMass = rb.mass;
+        rb.mass = 0;
 
         //add to attachment point
         newRing.transform.SetParent(attachmentPoint.transform, false);
@@ -58,6 +65,4 @@ public class WobblerAttachmentController : MonoBehaviour
         inventory++;
         ringQueue.Enqueue(newRing);
     }
-
-
 }
