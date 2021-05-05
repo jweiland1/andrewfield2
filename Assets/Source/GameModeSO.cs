@@ -6,14 +6,13 @@ using UnityEngine;
 public class GameModeSO : ScriptableObject
 {
     [Tooltip("Measured in SECONDS")]
-    [SerializeField] private float GameModeTimeInSeconds;
+    [SerializeField] public float GameModeTimeInSeconds;
 
-
-    [SerializeField] private PointsData DropZone;
-    [SerializeField] private ScoreTriggerGameRules RingShots;
-    [SerializeField] private ScoreTriggerGameRules TowerZoneTop, TowerZoneMiddle, TowerZoneLower;
-    [SerializeField] private ScoreTriggerGameRules StartLinesDropZone;
-    [SerializeField] private ScoreTriggerGameRules EndGameDropZones;
+    [SerializeField] public PointsData DropZone;
+    [SerializeField] public ScoreTriggerGameRules RingShots;
+    [SerializeField] public ScoreTriggerGameRules TowerZoneTop, TowerZoneMiddle, TowerZoneLower;
+    [SerializeField] public ScoreTriggerGameRules StartLinesDropZone;
+    [SerializeField] public ScoreTriggerGameRules EndGameDropZones;
 }
 
 [System.Serializable]

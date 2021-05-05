@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1173b9b216e4f24e9717182c171416e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActivated: 1
   scoreValue: 20
   team: 0
   objectTag: Wobblers
+  zoneID: 0
 --- !u!65 &3931369297815093105
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -108,7 +110,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6509952151276941747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
