@@ -31,6 +31,6 @@ public class ScoreTrigger : MonoBehaviour
 
     protected void TriggerScoreEvent(int value, Team team)
     {
-        OnScoreTriggered?.Invoke(scoreValue, team);
+        OnScoreTriggered?.Invoke(value, team);
     }
 }

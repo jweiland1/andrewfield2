@@ -28,6 +28,7 @@ public class MovementController : MonoBehaviour
             rb.AddForce(pivotPoint.forward * acceleration, ForceMode.Force);
     }
 
+    ///<summary>Rotate Towards the Right Stick vector direction</summary>
     public void Rotate(float x, float y)
     {
         //Debug.Log("x : " + x + " | y : " + y);
@@ -38,7 +39,7 @@ public class MovementController : MonoBehaviour
         pivotPoint.LookAt(facePos);
     }
 
-    //public float x, y;
+    ///<summary>Left  Stick Movement based on the current camera position</summary>
     public void Movement(float x, float y)
     {
         //Debug.Log("x : " + x + " | y : " + y);
@@ -46,7 +47,6 @@ public class MovementController : MonoBehaviour
 
         Debug.Log("facePOS : " + newRot.ToString());
         Debug.DrawRay(rb.position, newRot * 10, Color.green);
-
         rb.AddForce(newRot * topSpeed);
     }
 }

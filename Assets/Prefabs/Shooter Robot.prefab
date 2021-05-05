@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolCount: 0
-  tag: 
+  tag: Ring
 --- !u!1 &1502067149736495767
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3383144068033737330}
   - component: {fileID: 4089801786776356851}
+  - component: {fileID: 25666218}
   m_Layer: 0
   m_Name: Wobbler Gobbler
   m_TagString: Untagged
@@ -187,6 +188,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.44377512, y: 0.05927059, z: 0.21125782}
   m_Center: {x: 0.008088261, y: -0.08586024, z: -0.010042846}
+--- !u!114 &25666218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502067149736495767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7408824c58a77a34381cc35643a733e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolCount: 0
+  tag: Wobblers
 --- !u!1 &2119649893882850513
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 383179548784171764}
+  - component: {fileID: 343909562}
   m_Layer: 0
   m_Name: Wobbler Attachment Point
   m_TagString: Untagged
@@ -241,12 +257,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2228036654449719750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.101, z: -0.324}
+  m_LocalPosition: {x: 0, y: 0.2463, z: -0.388}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7632814820229797341}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &343909562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228036654449719750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7077954a2b96a47a02f7e04183d555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxInventory: 1
+  inventory: 0
+  ringCollecter: {fileID: 25666218}
+  attachmentPoint: {fileID: 2228036654449719750}
 --- !u!1 &2258896148660462390
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSensitivity: 5
   pivotPoint: {fileID: 7632814820229797341}
-  topSpeed: 10
+  topSpeed: 25
 --- !u!114 &356638000915086907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flywheelPower: 500
   inventory: 0
-  ringCollecter: {fileID: 0}
+  ringCollecter: {fileID: 1902786095}
   launcherDirection: {fileID: 5868743382750803307}
   attachmentPoints:
   - {fileID: 2258896148660462390}
