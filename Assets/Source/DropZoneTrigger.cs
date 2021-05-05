@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class DropZoneTrigger : ScoreTrigger
-{    
+{
+    public char zoneID;
     public override void OnTriggerEnter(Collider other)
     {
         ScoringEventCheck(other, scoreValue, team);

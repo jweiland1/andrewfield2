@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322ee5f0dd8863045add9691e286b493, type: 3}
+  m_Name: GameModeData_1
+  m_EditorClassIdentifier: 
+  GameModeTimeInSeconds: 30
+  DropZone:
+    pointsValue: 15
+  RingShots:
+    isActivated: 1
+    pointsValue: 15
+    isTeamSensitive: 0
+  TowerZoneTop:
+    isActivated: 1
+    pointsValue: 12
+    isTeamSensitive: 0
+  TowerZoneMiddle:
+    isActivated: 1
+    pointsValue: 6
+    isTeamSensitive: 0
+  TowerZoneLower:
+    isActivated: 1
+    pointsValue: 3
+    isTeamSensitive: 0
+  StartLinesDropZone:
+    isActivated: 0
+    pointsValue: 0
+    isTeamSensitive: 0
+  EndGameDropZones:
+    isActivated: 0
+    pointsValue: 0
+    isTeamSensitive: 0
