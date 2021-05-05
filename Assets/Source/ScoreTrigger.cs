@@ -23,7 +23,7 @@ public class ScoreTrigger : MonoBehaviour
         {
             if(other.CompareTag(objectTag))
             {
-                Debug.Log("Score triggered by " + objectTag);
+                //Debug.Log("Score triggered by " + objectTag);
                 TriggerScoreEvent(scoreValue, team);
             }
         }
