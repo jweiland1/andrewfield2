@@ -114,7 +114,10 @@ public class RulesManager : MonoBehaviour
         TowerZones[0].scoreValue = GameModeTimeIntervals[currentRuleIndex].TowerZoneTop.pointsValue;
         TowerZones[1].scoreValue = GameModeTimeIntervals[currentRuleIndex].TowerZoneMiddle.pointsValue;
         TowerZones[2].scoreValue = GameModeTimeIntervals[currentRuleIndex].TowerZoneLower.pointsValue;
-        
+        TowerZones[3].scoreValue = GameModeTimeIntervals[currentRuleIndex].TowerZoneTop.pointsValue;
+        TowerZones[4].scoreValue = GameModeTimeIntervals[currentRuleIndex].TowerZoneMiddle.pointsValue;
+        TowerZones[5].scoreValue = GameModeTimeIntervals[currentRuleIndex].TowerZoneLower.pointsValue;
+
         textString[1].text = "Game Mode: " + GameModeTimeIntervals[currentRuleIndex].name;
         textString[2].text = "Mode Timer: " + GameModeTimeIntervals[currentRuleIndex].GameModeTimeInSeconds.ToString();
         textString[3].text = "Drop Zone Points: " + GameModeTimeIntervals[currentRuleIndex].DropZone.pointsValue.ToString();

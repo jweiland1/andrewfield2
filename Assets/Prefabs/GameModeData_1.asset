@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322ee5f0dd8863045add9691e286b493, type: 3}
   m_Name: GameModeData_1
   m_EditorClassIdentifier: 
-  GameModeTimeInSeconds: 10
+  GameModeTimeInSeconds: 30
   DropZone:
     pointsValue: 15
   RingShots:
