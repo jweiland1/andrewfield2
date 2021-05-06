@@ -5,25 +5,22 @@ using InControl;
 
 public class RingLauncher : MonoBehaviour
 {
-    [SerializeField] private float flywheelPower = 5f;    
-    [SerializeField] private int inventory = 0;
-    [SerializeField] private RingCollectorController ringCollecter;
-    [SerializeField] GameObject launcherDirection;    
-
+    [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject[] attachmentPoints;
-    private Queue<GameObject> ringQueue;
+    [SerializeField] private float flywheelPower = 5f;
+    [SerializeField] private RingCollectorController ringCollecter;
+    [SerializeField] GameObject launcherDirection;
+    public int inventorySize = 0;
 
     private void Start()
     {
-        ringQueue = new Queue<GameObject>();
-        //ringCollecter = GetComponentInChildren<RingCollectorController>();
+        inventory = new Inventory(size: inventorySize, attachmentPoints);        
         Reset();
     }
 
     private void Reset()
     {
-        inventory = 0;
-        ringQueue.Clear();
+        inventory = new Inventory(size: inventorySize, attachmentPoints);
     }
 
     private void SetFlyWheelPowerTo(float value)
@@ -34,17 +31,18 @@ public class RingLauncher : MonoBehaviour
     public void LaunchRing()
     {
         // check ring count
-        if(inventory > 0)
+        if(inventory.cache > 0)
         {
             // launch ring using current Flywheel Power as force
-            var nextRing = ringQueue.Dequeue();
+            var nextRing = inventory.itemQueue.Dequeue();
             nextRing.transform.parent = null;
             //launch in direction the launcher is facing
             var rb = nextRing.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.mass = rb.GetComponent<ScoringObjectDataContainer>().data.Mass;
+            nextRing.GetComponentInChildren<Collider>().enabled = false;
             rb.AddForce(launcherDirection.transform.forward * flywheelPower);
-            inventory--;
+            inventory.cache--;
         }        
     }
 
@@ -55,31 +53,65 @@ public class RingLauncher : MonoBehaviour
 
     public void ActivateRingIntake()
     {
-        // check if robot can collect more rings
-        if (inventory < 3)
+        
+        //check for if ring is touching collector
+        if (ringCollecter.IsRingCollectible())
         {
-            //check for if ring is touching collector
-            if (ringCollecter.IsRingCollectible())
-            {
-                AddRingToInventory(ringCollecter.CollectRing());
-            }
+            inventory.AddToInventory(ringCollecter.CollectRing());
         }
 
         //spin the thingies (do later)
     }
+}
 
-    private void AddRingToInventory(GameObject newRing)
+[System.Serializable]
+public class Inventory
+{
+    [SerializeField] public int cache = 0;
+    [SerializeField] private GameObject[] attachmentPoints;
+    public Queue<GameObject> itemQueue;
+    private int maxSize = 0;
+
+    public Inventory(int size)
     {
-        Debug.Log("ring collected");
-        var rb = newRing.GetComponent<Rigidbody>();
-        rb.isKinematic = true;        
-        rb.mass = 0;
+        itemQueue = new Queue<GameObject>();
+        cache = 0;
+        maxSize = size;
+    }
 
-        //add to attachment point
-        newRing.transform.SetParent(attachmentPoints[inventory].transform, false);
-        newRing.transform.localPosition = Vector3.zero;
-        inventory++;
-        ringQueue.Enqueue(newRing);
-        
+    public Inventory(int size, GameObject[] attachPoints)
+    {
+        itemQueue = new Queue<GameObject>();
+        cache = 0;
+        maxSize = size;
+
+        attachmentPoints = new GameObject[attachPoints.Length];
+        for(int i = 0; i< attachPoints.Length; i++)
+        {
+            attachmentPoints[i] = attachPoints[i];
+        }
+    }
+
+    public void AddToInventory(GameObject newItem)
+    {
+        if(cache < maxSize)
+        {
+            Debug.Log("ring collected");
+            var rb = newItem.GetComponent<Rigidbody>();
+            rb.isKinematic = true;
+            rb.mass = 0;
+            newItem.GetComponentInChildren<Collider>().enabled = false;
+
+            //add to attachment point
+            int newIndex = cache % attachmentPoints.Length;
+            Debug.Log("new index: " + newIndex);
+            newItem.transform.SetParent(attachmentPoints[newIndex].transform, false);//TODO: loop attachmentpoints if != to maxSize
+
+            
+
+            newItem.transform.localPosition = Vector3.zero;
+            cache++;
+            itemQueue.Enqueue(newItem);        
+        }
     }
 }
