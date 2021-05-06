@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
-{
-    private bool isTimedEvent = false;
-    public float timedEvent;// in seconds
-    
-    public float intervalInSeconds = 1; // in seconds
-    public float timerLength = 120;
+{    
+    public float eventTime;// in seconds
+    private float remainingTime;
     public bool timerIsRunning = false;
-
-    public delegate void UpdateTime(string newTime);
-    public event UpdateTime OnTimerUpdate;
+    public bool isRepeating = false;
 
     public delegate void TimedEvent();
     public event TimedEvent OnTimedEvent;
@@ -23,48 +18,35 @@ public class Timer : MonoBehaviour
         timerIsRunning = true;
     }
 
-    public void SetNewTimedEvent(float timeInSeconds)
+    public void SetNewTimedEvent(float timeInSeconds, bool isRepeating)
     {
-        isTimedEvent = true;
-        timedEvent = timeInSeconds;
+        timerIsRunning = true;
+        eventTime = timeInSeconds;
+        remainingTime = eventTime;
+        this.isRepeating = isRepeating;
     }
 
     void Update()
     {
         if (timerIsRunning)
         {
-            if (intervalInSeconds > 0)
+            if(remainingTime > 0)
             {
-                intervalInSeconds -= Time.deltaTime;
-                timerLength -= Time.deltaTime;
+                remainingTime -= Time.deltaTime;
             }
             else
             {
-                intervalInSeconds = 1;
-                OnTimerUpdate?.Invoke(DisplayTime(timerLength));
-            }
-
-            if(isTimedEvent)
-            {
-                if(timedEvent > 0)
+                if(isRepeating)
                 {
-                    timedEvent -= Time.deltaTime;
+                    remainingTime = eventTime;
                 }
                 else
                 {
-                    timedEvent = 0;
-                    isTimedEvent = false;
-                    OnTimedEvent?.Invoke();
+                    eventTime = 0;
+                    timerIsRunning = false;         
                 }
-            }
+                OnTimedEvent?.Invoke();
+            }            
         }
-    }
-
-    public string DisplayTime(float timeToDisplay)
-    {
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        
-        return string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
+    }    
 }
