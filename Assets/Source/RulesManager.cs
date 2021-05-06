@@ -16,6 +16,9 @@ public class RulesManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI [] textString;
 
+    [SerializeField] private InventoryContainer[] RingStacks;
+    [SerializeField] private GameObject RingPrefab;
+
     private int currentRuleIndex = 0;
 
     //randomize the drop zone and set ring stack
@@ -53,18 +56,34 @@ public class RulesManager : MonoBehaviour
             { 
                 DropZones[i].isActivated = true;
                 textString[0].text = "Drop Zone: A";
+                for(int a = 0; a < RingStacks.Length; a++)
+                {
+                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
+                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
+                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
+                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
+                }
                 continue;                
             }
             else if (randomMode == 2 && DropZones[i].zoneID.Equals('B'))
             {
                 DropZones[i].isActivated = true;
                 textString[0].text = "Drop Zone: B";
+                for (int a = 0; a < RingStacks.Length; a++)
+                {
+                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
+                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
+                }
                 continue;
             } 
             else if (randomMode == 3 && DropZones[i].zoneID.Equals('C'))
             {
                 DropZones[i].isActivated = true;
                 textString[0].text = "Drop Zone: C";
+                for (int a = 0; a < RingStacks.Length; a++)
+                {
+                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));                    
+                }
                 continue;
             }
 

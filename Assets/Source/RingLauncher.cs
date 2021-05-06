@@ -34,15 +34,14 @@ public class RingLauncher : MonoBehaviour
         if(inventory.cache > 0)
         {
             // launch ring using current Flywheel Power as force
-            var nextRing = inventory.itemQueue.Dequeue();
+            var nextRing = inventory.PopFromInventory();
             nextRing.transform.parent = null;
             //launch in direction the launcher is facing
             var rb = nextRing.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.mass = rb.GetComponent<ScoringObjectDataContainer>().data.Mass;
             nextRing.GetComponentInChildren<Collider>().enabled = false;
-            rb.AddForce(launcherDirection.transform.forward * flywheelPower);
-            inventory.cache--;
+            rb.AddForce(launcherDirection.transform.forward * flywheelPower);            
         }        
     }
 
@@ -67,8 +66,8 @@ public class RingLauncher : MonoBehaviour
 [System.Serializable]
 public class Inventory
 {
-    [SerializeField] public int cache = 0;
-    [SerializeField] private GameObject[] attachmentPoints;
+    [HideInInspector] public int cache = 0;
+    private GameObject[] attachmentPoints;
     public Queue<GameObject> itemQueue;
     private int maxSize = 0;
 
@@ -113,5 +112,11 @@ public class Inventory
             cache++;
             itemQueue.Enqueue(newItem);        
         }
+    }
+
+    public GameObject PopFromInventory()
+    {
+        cache--;
+        return itemQueue.Dequeue();
     }
 }
