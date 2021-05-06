@@ -16,8 +16,10 @@ public class RulesManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI [] textString;
 
-    [SerializeField] private InventoryContainer[] RingStacks;
+    [SerializeField] private ObjectStack[] RingStacks;
     [SerializeField] private GameObject RingPrefab;
+
+    private InventoryContainer ringOP;
 
     private int currentRuleIndex = 0;
 
@@ -31,8 +33,19 @@ public class RulesManager : MonoBehaviour
             timer = GetComponent<Timer>();
         }
 
+        CreateObjectPool();
         SetupNewRules();
         PickRandomMode();
+    }
+
+    private void CreateObjectPool()
+    {
+        ringOP = GetComponent<InventoryContainer>();        
+
+        for(int i = 0; i < ringOP.inventory.maxSize; i++)
+        {
+            ringOP.inventory.AddToInventory(Instantiate(RingPrefab));
+        }
     }
 
     /// <summary>
@@ -55,40 +68,51 @@ public class RulesManager : MonoBehaviour
             if(randomMode == 1 && DropZones[i].zoneID.Equals('A'))
             { 
                 DropZones[i].isActivated = true;
-                textString[0].text = "Drop Zone: A";
-                for(int a = 0; a < RingStacks.Length; a++)
-                {
-                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
-                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
-                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
-                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
-                }
+                textString[0].text = "Drop Zone: A";                
                 continue;                
             }
             else if (randomMode == 2 && DropZones[i].zoneID.Equals('B'))
             {
                 DropZones[i].isActivated = true;
-                textString[0].text = "Drop Zone: B";
-                for (int a = 0; a < RingStacks.Length; a++)
-                {
-                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
-                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));
-                }
+                textString[0].text = "Drop Zone: B";                
                 continue;
             } 
             else if (randomMode == 3 && DropZones[i].zoneID.Equals('C'))
             {
                 DropZones[i].isActivated = true;
-                textString[0].text = "Drop Zone: C";
-                for (int a = 0; a < RingStacks.Length; a++)
-                {
-                    RingStacks[a].inventory.AddToInventory(Instantiate(RingPrefab));                    
-                }
+                textString[0].text = "Drop Zone: C";                
                 continue;
             }
 
             DropZones[i].isActivated = false;
         }
+
+        if (randomMode == 1)
+        {
+            for (int a = 0; a < RingStacks.Length; a++)
+            {
+                RingStacks[a].AddToStack(ringOP.inventory.PopFromInventory());
+                RingStacks[a].AddToStack(ringOP.inventory.PopFromInventory());
+                RingStacks[a].AddToStack(ringOP.inventory.PopFromInventory());
+                RingStacks[a].AddToStack(ringOP.inventory.PopFromInventory());
+            }
+        }
+        else if(randomMode == 2)
+        {
+            for (int a = 0; a < RingStacks.Length; a++)
+            {
+                RingStacks[a].AddToStack(ringOP.inventory.PopFromInventory());
+                RingStacks[a].AddToStack(ringOP.inventory.PopFromInventory());
+            }
+        }
+        else if (randomMode == 3)
+        {
+            for (int a = 0; a < RingStacks.Length; a++)
+            {
+                RingStacks[a].AddToStack(ringOP.inventory.PopFromInventory());
+            }
+        }
+
     }
 
     

@@ -10,12 +10,19 @@ public class InventoryContainer : MonoBehaviour
 
     private void Start()
     {
-        inventory = new Inventory(size: inventorySize, attachmentPoints);
-        Reset();
+        Init();
+    }
+
+    private void Init()
+    {
+        if (attachmentPoints.Length > 0)
+            inventory = new Inventory(size: inventorySize, attachmentPoints);
+        else
+            inventory = new Inventory(size: inventorySize);
     }
 
     private void Reset()
     {
-        inventory = new Inventory(size: inventorySize, attachmentPoints);
+        Init();
     }
 }

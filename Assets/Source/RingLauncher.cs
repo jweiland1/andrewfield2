@@ -40,7 +40,7 @@ public class RingLauncher : MonoBehaviour
             var rb = nextRing.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.mass = rb.GetComponent<ScoringObjectDataContainer>().data.Mass;
-            nextRing.GetComponentInChildren<Collider>().enabled = false;
+            nextRing.GetComponentInChildren<Collider>().enabled = true;
             rb.AddForce(launcherDirection.transform.forward * flywheelPower);            
         }        
     }
@@ -63,60 +63,3 @@ public class RingLauncher : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class Inventory
-{
-    [HideInInspector] public int cache = 0;
-    private GameObject[] attachmentPoints;
-    public Queue<GameObject> itemQueue;
-    private int maxSize = 0;
-
-    public Inventory(int size)
-    {
-        itemQueue = new Queue<GameObject>();
-        cache = 0;
-        maxSize = size;
-    }
-
-    public Inventory(int size, GameObject[] attachPoints)
-    {
-        itemQueue = new Queue<GameObject>();
-        cache = 0;
-        maxSize = size;
-
-        attachmentPoints = new GameObject[attachPoints.Length];
-        for(int i = 0; i< attachPoints.Length; i++)
-        {
-            attachmentPoints[i] = attachPoints[i];
-        }
-    }
-
-    public void AddToInventory(GameObject newItem)
-    {
-        if(cache < maxSize)
-        {
-            Debug.Log("ring collected");
-            var rb = newItem.GetComponent<Rigidbody>();
-            rb.isKinematic = true;
-            rb.mass = 0;
-            newItem.GetComponentInChildren<Collider>().enabled = false;
-
-            //add to attachment point
-            int newIndex = cache % attachmentPoints.Length;
-            Debug.Log("new index: " + newIndex);
-            newItem.transform.SetParent(attachmentPoints[newIndex].transform, false);//TODO: loop attachmentpoints if != to maxSize
-
-            
-
-            newItem.transform.localPosition = Vector3.zero;
-            cache++;
-            itemQueue.Enqueue(newItem);        
-        }
-    }
-
-    public GameObject PopFromInventory()
-    {
-        cache--;
-        return itemQueue.Dequeue();
-    }
-}
