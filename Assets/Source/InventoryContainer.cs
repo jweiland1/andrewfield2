@@ -8,7 +8,7 @@ public class InventoryContainer : MonoBehaviour
     [SerializeField] private GameObject[] attachmentPoints;
     public int inventorySize = 0;
 
-    private void Start()
+    private void Awake()
     {
         Init();
     }

@@ -18,6 +18,7 @@ public class RulesManager : MonoBehaviour
 
     [SerializeField] private ObjectStack[] RingStacks;
     [SerializeField] private GameObject RingPrefab;
+    [SerializeField] private InventoryContainer[] OutsideRingStacks;
 
     private InventoryContainer ringOP;
 
@@ -26,6 +27,15 @@ public class RulesManager : MonoBehaviour
     //randomize the drop zone and set ring stack
 
     [SerializeField] private Timer timer;
+
+    void Awake()
+    {
+#if UNITY_EDITOR
+        QualitySettings.vSyncCount = 0; // VSync must be disabled.
+        Application.targetFrameRate = 60;
+#endif
+    }
+
     private void Start()
     {
         if(!timer)
@@ -40,9 +50,9 @@ public class RulesManager : MonoBehaviour
 
     private void CreateObjectPool()
     {
-        ringOP = GetComponent<InventoryContainer>();        
+        ringOP = GetComponent<InventoryContainer>();       
 
-        for(int i = 0; i < ringOP.inventory.maxSize; i++)
+        for(int i = 0; i < ringOP.inventorySize; i++)
         {
             ringOP.inventory.AddToInventory(Instantiate(RingPrefab));
         }
@@ -113,6 +123,10 @@ public class RulesManager : MonoBehaviour
             }
         }
 
+        for(int i = 0; ringOP.inventory.cache > 0; i++)
+        {            
+            OutsideRingStacks[i % 2].inventory.AddToInventory(ringOP.inventory.PopFromInventory());
+        }
     }
 
     

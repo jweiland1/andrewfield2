@@ -31,8 +31,6 @@ public class ObjectStack : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.mass = rb.GetComponent<ScoringObjectDataContainer>().data.Mass;
             newItem.GetComponentInChildren<Collider>().enabled = true;
-
-            Debug.Break();
             cache++;
         }
     }
