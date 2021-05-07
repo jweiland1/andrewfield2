@@ -1,11 +1,17 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RulesManager : MonoBehaviour
 {
+    public Image img_blueteam, img_redteam;
+    public GameObject restart_btn;
+
     [Tooltip("In Sequential Order")]
     [SerializeField] private GameModeSO [] GameModeTimeIntervals;
+    [SerializeField] private ScoringSystem scoringSystem;
 
     [Header("Score Triggers")]
     [Tooltip("Arbitary text message")]
@@ -132,13 +138,38 @@ public class RulesManager : MonoBehaviour
 
     private void EndGame()
     {
-        //count all wobblers on valid drop zones
-        //send ui_endgame score
-        //send ui_endgame winning team
+        if(scoringSystem.BlueTeam > scoringSystem.RedTeam)
+        {
+            alternateColor = img_blueteam.color;
+            target_img = img_blueteam;
+            InvokeRepeating("FlashGreen", 0, 1f);
+        }
+        else
+        {
+            alternateColor = img_redteam.color;
+            target_img = img_redteam;
+            InvokeRepeating("FlashGreen", 0, 1f);
+        }
+
+        restart_btn.SetActive(true);
+    }
+
+
+    bool isGreen = false;
+    Color alternateColor;
+    Image target_img;
+    private void FlashGreen()
+    {
+        if (isGreen)
+            target_img.color = Color.green;
+        else
+            target_img.color = alternateColor;
+
+        isGreen = !isGreen;
     }
     
     
-    IEnumerator StartCountingDropZones(DropZoneTrigger[] zones)
+    IEnumerator StartCountingDropZones(DropZoneTrigger[] zones, bool isEndGame)
     {
         if (zones[0] is DropZoneTrigger)
         {
@@ -157,20 +188,29 @@ public class RulesManager : MonoBehaviour
             if (drops.isActivated)
                 drops.isCountingWobblers = false;
         }
+
+        if (isEndGame)
+            EndGame();
+
+        
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void SetupNewRules()
     {
         if(currentRuleIndex == 1)
         {
-            StartCoroutine(StartCountingDropZones(DropZones));   
+            StartCoroutine(StartCountingDropZones(DropZones, false));
         }
         if (currentRuleIndex >= GameModeTimeIntervals.Length)
         {
             StopCoroutine("StartCountingDropZones");
-            StartCoroutine(StartCountingDropZones(EndGameDropZones));
-            StartCoroutine(StartCountingDropZones(StartLines));
-            EndGame();
+            StartCoroutine(StartCountingDropZones(EndGameDropZones, false));
+            StartCoroutine(StartCountingDropZones(StartLines, true));
             return;
         }
 
