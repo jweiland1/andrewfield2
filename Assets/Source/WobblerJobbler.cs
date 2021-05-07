@@ -5,7 +5,8 @@ using UnityEngine;
 public class WobblerJobbler : MonoBehaviour
 {
     public Vector3 centerOfMass;
-    public Rigidbody rb;    
+    public Rigidbody rb;
+    public int id = 0;
 
     void Start()
     {        

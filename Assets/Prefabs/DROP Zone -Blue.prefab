@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DROP Zone -Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 2616350735211899312, guid: 0ebc42fa3f6ede94b8dbadeca4cd6dd6,
+        type: 3}
+      propertyPath: m_TagString
+      value: DropZone
+      objectReference: {fileID: 0}
     - target: {fileID: 2976839496775648343, guid: 0ebc42fa3f6ede94b8dbadeca4cd6dd6,
         type: 3}
       propertyPath: m_RootOrder
@@ -81,6 +86,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526398811393848176, guid: 0ebc42fa3f6ede94b8dbadeca4cd6dd6,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.132542
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526398811393848176, guid: 0ebc42fa3f6ede94b8dbadeca4cd6dd6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.02117119
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ebc42fa3f6ede94b8dbadeca4cd6dd6, type: 3}

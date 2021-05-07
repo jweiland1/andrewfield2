@@ -12,7 +12,7 @@ public class ScoreTrigger : MonoBehaviour
     public event ScoreEvent OnScoreTriggered;
     [SerializeField] protected string objectTag;
 
-    private void Start()
+    protected void Start()
     {
         FindObjectOfType<ScoringSystem>().AddMeToScoreSystem(this);
     }

@@ -3,7 +3,22 @@ guid: 5b65d99313a50ca4ab484b56c258c3d8
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stage_Ring
+    second: {fileID: 2100000, guid: 80ebde36a11f8bf41a601fd5bc3ec646, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 97ef0f65598583f4cb1164958cd9811d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: whitemat
+    second: {fileID: 2100000, guid: 226783cedf90ab646a89ac05c0b739fd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

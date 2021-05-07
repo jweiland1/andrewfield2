@@ -19,10 +19,10 @@ public class RingCollectorController : MonoBehaviour
     {
         if (other.transform.parent)
         {
-            if (other.transform.parent.CompareTag(tag))
-            {
+            if (other.transform.CompareTag(tag))
+            {                
                 ringPool.Add(other.transform.parent.gameObject);
-                poolCount++;
+                poolCount++;                
             }
         }
     }
@@ -31,7 +31,7 @@ public class RingCollectorController : MonoBehaviour
     {
         if (other.transform.parent)
         {
-            if(other.transform.parent.CompareTag(tag))
+            if(other.transform.CompareTag(tag))
             {
                 ringPool.Remove(other.transform.parent.gameObject);
                 poolCount--;
@@ -48,6 +48,7 @@ public class RingCollectorController : MonoBehaviour
     {
         GameObject retVal = ringPool[0];        
         ringPool.RemoveAt(0);
+        poolCount--;        
         return retVal;
     }
 

@@ -129,11 +129,20 @@ public class RulesManager : MonoBehaviour
         }
     }
 
+    private void EndGame()
+    {
+        //count all wobblers on valid drop zones
+        //send ui_endgame score
+        //send ui_endgame winning team
+    }
     
     private void SetupNewRules()
     {
         if (currentRuleIndex >= GameModeTimeIntervals.Length)
+        {
+            EndGame();
             return;
+        }
 
         // setup rule timer
         timer.SetNewTimedEvent(GameModeTimeIntervals[currentRuleIndex].GameModeTimeInSeconds, isRepeating: false);
