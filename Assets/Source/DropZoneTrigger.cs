@@ -57,8 +57,22 @@ public class DropZoneTrigger : ScoreTrigger
                 {
                     if (team == Team.none)
                     {
-                        TriggerScoreEvent(value, other.GetComponentInParent<ScoringObjectDataContainer>().team);
-
+                        if (value > 0)
+                        {
+                            if (!ids.ContainsKey(other.gameObject.GetComponentInParent<WobblerJobbler>().id))
+                            {
+                                ids.Add(other.gameObject.GetComponentInParent<WobblerJobbler>().id, other.gameObject);
+                                TriggerScoreEvent(value, other.GetComponentInParent<ScoringObjectDataContainer>().team);
+                            }
+                        }
+                        else
+                        {
+                            if (ids.ContainsKey(other.gameObject.GetComponentInParent<WobblerJobbler>().id))
+                            {
+                                ids.Remove(other.gameObject.GetComponentInParent<WobblerJobbler>().id);
+                                TriggerScoreEvent(value, other.GetComponentInParent<ScoringObjectDataContainer>().team);
+                            }
+                        }
                     }
 
                     if (other.gameObject.GetComponentInParent<ScoringObjectDataContainer>().team == this.team)

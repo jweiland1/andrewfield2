@@ -14,7 +14,7 @@ public class ScoringSystem : MonoBehaviour
     public void AddMeToScoreSystem(ScoreTrigger newSubscriber)
     {
         newSubscriber.OnScoreTriggered += AddToScore;
-        Debug.Log("add new sub: " + newSubscriber.name);
+        //Debug.Log("add new sub: " + newSubscriber.name);
     }
 
     public void AddToScore(int value, Team team)

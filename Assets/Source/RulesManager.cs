@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -9,10 +10,10 @@ public class RulesManager : MonoBehaviour
     [Header("Score Triggers")]
     [Tooltip("Arbitary text message")]
     [SerializeField] private DropZoneTrigger[] DropZones;
-    [SerializeField] private ScoreTrigger[] EndGameDropZones;
+    [SerializeField] private DropZoneTrigger[] EndGameDropZones;
     [SerializeField] private ScoreTrigger[] RingShots;
     [SerializeField] private ScoreTrigger[] TowerZones;
-    [SerializeField] private ScoreTrigger[] StartLines;
+    [SerializeField] private DropZoneTrigger[] StartLines;
 
     [SerializeField] private TextMeshProUGUI [] textString;
 
@@ -136,10 +137,39 @@ public class RulesManager : MonoBehaviour
         //send ui_endgame winning team
     }
     
+    
+    IEnumerator StartCountingDropZones(DropZoneTrigger[] zones)
+    {
+        if (zones[0] is DropZoneTrigger)
+        {
+            foreach (DropZoneTrigger drops in zones)
+            {
+                if (drops.isActivated)
+                    drops.isCountingWobblers = true;
+            }
+        }
+
+        yield return new WaitForFixedUpdate();
+
+        
+        foreach (DropZoneTrigger drops in DropZones)
+        {
+            if (drops.isActivated)
+                drops.isCountingWobblers = false;
+        }
+    }
+
     private void SetupNewRules()
     {
+        if(currentRuleIndex == 1)
+        {
+            StartCoroutine(StartCountingDropZones(DropZones));   
+        }
         if (currentRuleIndex >= GameModeTimeIntervals.Length)
         {
+            StopCoroutine("StartCountingDropZones");
+            StartCoroutine(StartCountingDropZones(EndGameDropZones));
+            StartCoroutine(StartCountingDropZones(StartLines));
             EndGame();
             return;
         }

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1712677910576576034, guid: c1ca1e00818239144894c37860e679d0,
         type: 3}
       propertyPath: m_Name
-      value: Start Line - Blue
+      value: Start Line - Variant Blue
       objectReference: {fileID: 0}
     - target: {fileID: 1712677910576576034, guid: c1ca1e00818239144894c37860e679d0,
         type: 3}
@@ -92,6 +92,36 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 34a3905bba196ef4084f83416c0fe0b3, type: 2}
+    - target: {fileID: 6627224467258830050, guid: c1ca1e00818239144894c37860e679d0,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.033173
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627224467258830050, guid: c1ca1e00818239144894c37860e679d0,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 4.106631
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627224467258830050, guid: c1ca1e00818239144894c37860e679d0,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.2991697
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627224467258830050, guid: c1ca1e00818239144894c37860e679d0,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627224467258830050, guid: c1ca1e00818239144894c37860e679d0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.657461
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627224467258830050, guid: c1ca1e00818239144894c37860e679d0,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8643526415518344577, guid: c1ca1e00818239144894c37860e679d0,
         type: 3}
       propertyPath: team
