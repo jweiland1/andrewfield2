@@ -228,7 +228,7 @@ public class RulesManager : MonoBehaviour
             return;
         }
 
-        // setup rule timer
+        // setup rule timer        
         timer.SetNewTimedEvent(GameModeTimeIntervals[currentRuleIndex].GameModeTimeInSeconds, isRepeating: false);
         timer.OnTimedEvent += TimedEventHandler;
 
