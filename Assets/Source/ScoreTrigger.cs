@@ -23,8 +23,11 @@ public class ScoreTrigger : MonoBehaviour
         {
             if(other.CompareTag(objectTag))
             {
-                Debug.Log(objectTag + " score val = " + scoreValue);
-                TriggerScoreEvent(scoreValue, team);
+                if(other.GetComponentInParent<ScoringObjectDataContainer>().isValidShot)
+                {
+                    Debug.Log(objectTag + " score val = " + scoreValue);
+                    TriggerScoreEvent(scoreValue, team);
+                }
             }
         }
     }

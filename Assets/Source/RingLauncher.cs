@@ -11,6 +11,7 @@ public class RingLauncher : MonoBehaviour
     [SerializeField] private RingCollectorController ringCollecter;
     [SerializeField] GameObject launcherDirection;
     public int inventorySize = 0;
+    public bool isInShotZone = false;
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class RingLauncher : MonoBehaviour
             var rb = nextRing.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.mass = rb.GetComponent<ScoringObjectDataContainer>().data.Mass;
+            rb.GetComponent<ScoringObjectDataContainer>().isValidShot = isInShotZone;
             nextRing.GetComponentInChildren<Collider>().enabled = true;
             rb.AddForce(launcherDirection.transform.forward * flywheelPower);            
         }        

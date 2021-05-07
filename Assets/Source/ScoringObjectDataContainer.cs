@@ -7,6 +7,7 @@ public class ScoringObjectDataContainer : MonoBehaviour
 {    
     public Team team;
     public ScoringObjectDataSO data;
+    public bool isValidShot = false;
 
     private void Awake()
     {
