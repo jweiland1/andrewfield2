@@ -9,6 +9,29 @@ public class RingerFlinger : MonoBehaviour
     [SerializeField] private float launchPower = 5f;
     [SerializeField] private float launchRange = 5f;
     [SerializeField] private float angleRange = 5f;
+    public Timer timer;
+    public float intervalSpeed = 0.5f;
+
+    private void Awake()
+    {
+        timer = GetComponent<Timer>();
+        timer.SetNewTimedEvent(31, false);
+        timer.OnTimedEvent += BeginLaunch;
+    }
+
+    public void BeginLaunch()
+    {
+        StartCoroutine(LaunchAllObjects());
+    }
+
+    IEnumerator LaunchAllObjects()
+    {
+        while(inventoryContainer.inventory.cache > 0)
+        {
+            LaunchObject();
+            yield return new WaitForSecondsRealtime(intervalSpeed);
+        }
+    }
 
     public void LaunchObject()
     {
@@ -37,6 +60,6 @@ public class RingerFlinger : MonoBehaviour
 
                 rb.AddForce(randomAngle * randomLaunchPower);
             }
-        }            
+        }
     }
 }

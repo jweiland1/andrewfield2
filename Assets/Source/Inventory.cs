@@ -51,6 +51,7 @@ public class Inventory
                 Debug.Log("new index: " + newIndex);
                 newItem.transform.SetParent(attachmentPoints[newIndex].transform, false);//TODO: loop attachmentpoints if != to maxSize
                 newItem.transform.localPosition = Vector3.zero;
+                newItem.transform.rotation = Quaternion.identity;
             }
             else
             {
