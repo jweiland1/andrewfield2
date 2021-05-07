@@ -30,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 234004234422634463}
+  - {fileID: 2971414299468240732}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63,6 +64,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   data: {fileID: 11400000, guid: c4532a5c7f6c9dd4da0e5c3802f6528d, type: 2}
+--- !u!1 &1985502367803091454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2971414299468240732}
+  - component: {fileID: 2086331349935505270}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2971414299468240732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985502367803091454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0000000037253, z: 0}
+  m_LocalScale: {x: 0.429741, y: 0.429741, z: 0.429741}
+  m_Children: []
+  m_Father: {fileID: 8978080020713903280}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &2086331349935505270
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985502367803091454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8803937527578110353, guid: 33ef2c04e6a73784b82e1574c00e8982, type: 3}
 --- !u!1 &5345595563368682466
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +120,6 @@ GameObject:
   - component: {fileID: 234004234422634463}
   - component: {fileID: 3808893514036907138}
   - component: {fileID: 180084377674410598}
-  - component: {fileID: 8500863283693498332}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Ring
@@ -145,17 +190,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8500863283693498332
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5345595563368682466}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3607517932687752569, guid: daa8019ab72cc664b8004ec84f616c0a, type: 3}
