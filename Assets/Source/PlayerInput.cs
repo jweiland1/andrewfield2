@@ -13,6 +13,8 @@ public class PlayerInput : MonoBehaviour
     WobblerArmActions wobblerAction;
     WobblerAttachmentController wobblerController;
 
+    public float dpadSensitivity = 5f;
+
     private void Start()
     {
         movementController = GetComponent<MovementController>();
@@ -27,6 +29,8 @@ public class PlayerInput : MonoBehaviour
         ringLauncherAction = new LauncherActions();
         ringLauncherAction.ActivateRingIntake.AddDefaultBinding(InputControlType.Action1);
         ringLauncherAction.LaunchRing.AddDefaultBinding(InputControlType.LeftTrigger);
+        ringLauncherAction.IncreaseFlywheelPower.AddDefaultBinding(InputControlType.DPadUp);
+        ringLauncherAction.DecreaseFlywheelPower.AddDefaultBinding(InputControlType.DPadDown);
 
         wobblerAction = new WobblerArmActions();
         wobblerController = GetComponentInChildren<WobblerAttachmentController>();
@@ -54,6 +58,16 @@ public class PlayerInput : MonoBehaviour
         if (wobblerAction.LowerArm.WasPressed)
         {
             wobblerController.DropWobbler();
+        }
+
+        if (ringLauncherAction.IncreaseFlywheelPower.IsPressed)
+        {
+            ringLauncherController.AdjustFlyWheelPowerBy(dpadSensitivity * Time.deltaTime);
+        }
+
+        if (ringLauncherAction.DecreaseFlywheelPower.IsPressed)
+        {
+            ringLauncherController.AdjustFlyWheelPowerBy(-dpadSensitivity * Time.deltaTime);
         }
 
         movementController.Movement(movement.Forward.Value, movement.Strafe.Value);

@@ -7,11 +7,15 @@ public class RingLauncher : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject[] attachmentPoints;
-    [SerializeField] private float flywheelPower = 5f;
+    [SerializeField] public float flywheelMaxPower = 5f;
+    [SerializeField] public float flywheelPower = 5f;
     [SerializeField] private RingCollectorController ringCollecter;
     [SerializeField] GameObject launcherDirection;
     public int inventorySize = 0;
     public bool isInShotZone = false;
+
+    public delegate void InputEvent(float value);
+    public event InputEvent OnPowerChanged;
 
     private void Start()
     {
@@ -24,9 +28,11 @@ public class RingLauncher : MonoBehaviour
         inventory = new Inventory(size: inventorySize, attachmentPoints);
     }
 
-    private void SetFlyWheelPowerTo(float value)
+    public void AdjustFlyWheelPowerBy(float value)
     {
-        flywheelPower = value;
+        flywheelPower += value;
+        OnPowerChanged?.Invoke(value);
+
     }
 
     public void LaunchRing()
@@ -44,7 +50,7 @@ public class RingLauncher : MonoBehaviour
             rb.GetComponent<ScoringObjectDataContainer>().isValidShot = isInShotZone;
             nextRing.GetComponentInChildren<Collider>().enabled = true;
             rb.AddForce(launcherDirection.transform.forward * flywheelPower);            
-        }        
+        }
     }
 
     private void SpinFlyWheel()
