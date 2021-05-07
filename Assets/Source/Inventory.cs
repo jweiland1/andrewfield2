@@ -38,7 +38,7 @@ public class Inventory
     {
         if (cache < maxSize)
         {
-            Debug.Log("ring collected");
+            //Debug.Log("ring collected");
             var rb = newItem.GetComponent<Rigidbody>();
             rb.isKinematic = true;
             rb.mass = 0;

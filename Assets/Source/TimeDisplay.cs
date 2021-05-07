@@ -17,6 +17,7 @@ public class TimeDisplay : MonoBehaviour
 
         timer = GetComponent<Timer>();
         timer.SetNewTimedEvent(updateInterval, isRepeating: true);
+        DisplayTime(timeLimit);
     }
 
     void OnEnable()
@@ -32,7 +33,11 @@ public class TimeDisplay : MonoBehaviour
     
     public void UpdateTextString()
     {
-        textString.text = DisplayTime(timeLimit -= 1);
+        timeLimit -= 1;
+        if (timeLimit <= 0)
+            timeLimit = 0;
+
+        textString.text = DisplayTime(timeLimit);
     }
 
     public string DisplayTime(float timeToDisplay)

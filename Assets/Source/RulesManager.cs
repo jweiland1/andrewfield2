@@ -144,7 +144,7 @@ public class RulesManager : MonoBehaviour
             target_img = img_blueteam;
             InvokeRepeating("FlashGreen", 0, 1f);
         }
-        else
+        else if (scoringSystem.BlueTeam < scoringSystem.RedTeam)
         {
             alternateColor = img_redteam.color;
             target_img = img_redteam;
