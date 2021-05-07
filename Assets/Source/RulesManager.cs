@@ -17,7 +17,7 @@ public class RulesManager : MonoBehaviour
     [Tooltip("Arbitary text message")]
     [SerializeField] private DropZoneTrigger[] DropZones;
     [SerializeField] private DropZoneTrigger[] EndGameDropZones;
-    [SerializeField] private ScoreTrigger[] RingShots;
+    [SerializeField] private RingShotController[] RingShots;
     [SerializeField] private ScoreTrigger[] TowerZones;
     [SerializeField] private DropZoneTrigger[] StartLines;
 
@@ -200,11 +200,25 @@ public class RulesManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void ResetRingShots(bool isActive)
+    {
+        foreach(RingShotController r in RingShots)
+        {
+            r.Reset();
+            r.isActivated = isActive;
+        }
+    }
+
     private void SetupNewRules()
     {
-        if(currentRuleIndex == 1)
+        if (currentRuleIndex == 1)
         {
             StartCoroutine(StartCountingDropZones(DropZones, false));
+            ResetRingShots(false);
+        }
+        else if (currentRuleIndex == 2)
+        {
+            ResetRingShots(true);
         }
         if (currentRuleIndex >= GameModeTimeIntervals.Length)
         {
@@ -221,7 +235,7 @@ public class RulesManager : MonoBehaviour
         // update drop zones
         for(int i = 0; i < DropZones.Length; i++)
         {
-            DropZones[i].scoreValue = GameModeTimeIntervals[currentRuleIndex].DropZone.pointsValue;
+            DropZones[i].scoreValue = GameModeTimeIntervals[currentRuleIndex].DropZone.pointsValue;            
         }
 
         UpdateScoreTriggerGameRules(EndGameDropZones, GameModeTimeIntervals[currentRuleIndex].EndGameDropZones);

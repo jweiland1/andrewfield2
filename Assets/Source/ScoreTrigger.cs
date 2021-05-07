@@ -12,7 +12,7 @@ public class ScoreTrigger : MonoBehaviour
     public event ScoreEvent OnScoreTriggered;
     [SerializeField] protected string objectTag;
 
-    protected void Start()
+    protected virtual void Start()
     {
         FindObjectOfType<ScoringSystem>().AddMeToScoreSystem(this);
     }
@@ -32,7 +32,7 @@ public class ScoreTrigger : MonoBehaviour
         }
     }
 
-    protected void TriggerScoreEvent(int value, Team team)
+    protected virtual void TriggerScoreEvent(int value, Team team)
     {
         OnScoreTriggered?.Invoke(value, team);
     }

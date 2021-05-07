@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4868791856254516280}
-  - component: {fileID: 2317527881398510054}
   - component: {fileID: 533920910920048212}
+  - component: {fileID: 50747110690439198}
+  - component: {fileID: 737019033176545014}
   m_Layer: 0
   m_Name: Ring Shot
   m_TagString: Untagged
@@ -33,21 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30.969, y: 0, z: 0}
---- !u!114 &2317527881398510054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784734985898052181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db910202260c5844aac8babd23a9e588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreValue: 1
-  team: 0
-  objectTag: Ring
 --- !u!136 &533920910920048212
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -62,6 +48,41 @@ CapsuleCollider:
   m_Height: 0.46959978
   m_Direction: 1
   m_Center: {x: -0.0118587455, y: -0.01032222, z: 0.000000034071004}
+--- !u!95 &50747110690439198
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784734985898052181}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 176c51a3052ce0840af77d54b33e7968, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &737019033176545014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784734985898052181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59170f9a5f2e8b740944a643e64232e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActivated: 1
+  scoreValue: 1
+  team: 0
+  objectTag: Ring
 --- !u!1 &3003969363737791297
 GameObject:
   m_ObjectHideFlags: 0
